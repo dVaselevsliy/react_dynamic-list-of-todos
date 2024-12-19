@@ -10,7 +10,7 @@ export const TodoFilter = ({ query, setQuery, sortField, setSortField }) => {
             onChange={event => setSortField(event.target.value)}
             data-cy="statusSelect"
           >
-            <option value={"all"}>All</option>
+            <option value={'all'}>All</option>
             <option value={SORT_FIELD.COMPLEATED_FALSE}>Active</option>
             <option value={SORT_FIELD.COMPLEATED_TRUE}>Completed</option>
           </select>

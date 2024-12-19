@@ -2,9 +2,9 @@ import { Todo } from '../../types/Todo';
 
 type Props = {
   todo: Todo;
-  setSelect: boolean,
-  setSelectedTodo: Todo,
-  select: boolean
+  setSelect: boolean;
+  setSelectedTodo: Todo;
+  select: boolean;
 };
 
 export const TodoInfo: React.FC<Props> = ({

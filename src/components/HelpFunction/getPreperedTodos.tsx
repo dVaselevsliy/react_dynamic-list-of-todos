@@ -28,6 +28,3 @@ export const getPreperedTodos = (todos, { query, sortField }) => {
 
   return preperedTodo;
 };
-
-
-
