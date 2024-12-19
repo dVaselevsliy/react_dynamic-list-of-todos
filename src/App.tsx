@@ -13,27 +13,27 @@ import { getPreperedTodos } from './components/HelpFunction/getPreperedTodos';
 export const SORT_FIELD = {
   All: 'all',
   COMPLEATED_TRUE: 'true completed',
-  COMPLEATED_FALSE: 'false completed'
-}
+  COMPLEATED_FALSE: 'false completed',
+};
 
 export const App: React.FC = () => {
-  const [todos, setTodos] = useState([])
-  const [query, setQuery] = useState('')
-  const [sortField, setSortField] = useState(SORT_FIELD.All)
-  const [select, setSelect] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [todalModalLoading, setTodalModalLoading] = useState(true)
-  const [selectedTodo, setSelectedTodo] = useState('')
+  const [todos, setTodos] = useState([]);
+  const [query, setQuery] = useState('');
+  const [sortField, setSortField] = useState(SORT_FIELD.All);
+  const [select, setSelect] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [todalModalLoading, setTodalModalLoading] = useState(true);
+  const [selectedTodo, setSelectedTodo] = useState('');
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
     getTodos()
       .then(setTodos)
-      .finally(() => setLoading(false))
-  }, [])
+      .finally(() => setLoading(false));
+  }, []);
 
-  const visibleTodosQuery = getPreperedTodos(todos, {query, sortField})
+  const visibleTodosQuery = getPreperedTodos(todos, { query, sortField });
 
   return (
     <>
@@ -51,13 +51,11 @@ export const App: React.FC = () => {
                 setSelect={setSelect}
                 setLoading={setLoading}
                 setSelectedTodo={setSelectedTodo}
-                />
+              />
             </div>
 
             <div className="block">
-              {loading && (
-                <Loader />
-              )}
+              {loading && <Loader />}
               <TodoList
                 todos={visibleTodosQuery}
                 setTodos={setTodos}
@@ -66,7 +64,7 @@ export const App: React.FC = () => {
                 loading={loading}
                 setLoading={setLoading}
                 setSelectedTodo={setSelectedTodo}
-                />
+              />
             </div>
           </div>
         </div>
@@ -80,8 +78,8 @@ export const App: React.FC = () => {
           setTodos={setTodos}
           selectedTodo={selectedTodo}
           setSelectedTodo={setSelectedTodo}
-          />
-        )}
+        />
+      )}
     </>
   );
 };

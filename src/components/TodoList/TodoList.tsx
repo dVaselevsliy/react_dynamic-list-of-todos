@@ -3,8 +3,8 @@ import { TodoInfo } from '../TodoInfo/TodoInfo';
 import { Todo } from '../../types/Todo';
 
 type Props = {
-  todos: Todo[]
-}
+  todos: Todo[];
+};
 
 export const TodoList: React.FC<Props> = ({
   todos,
@@ -13,7 +13,7 @@ export const TodoList: React.FC<Props> = ({
   loading,
   setLoading,
   setTodos,
-  setSelectedTodo
+  setSelectedTodo,
 }) => (
   <table className="table is-narrow is-fullwidth">
     <thead>
@@ -30,7 +30,7 @@ export const TodoList: React.FC<Props> = ({
     </thead>
 
     <tbody>
-      {todos.map((todo) => (
+      {todos.map(todo => (
         <TodoInfo
           todo={todo}
           key={todo.id}
@@ -41,7 +41,7 @@ export const TodoList: React.FC<Props> = ({
           userId={todo.userId}
           setTodos={setTodos}
           setSelectedTodo={setSelectedTodo}
-          />
+        />
       ))}
     </tbody>
   </table>

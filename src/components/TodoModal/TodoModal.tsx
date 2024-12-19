@@ -3,28 +3,26 @@ import { Loader } from '../Loader';
 import { getUser } from '../../api';
 
 export const TodoModal: React.FC = ({
-   setSelect,
-   todalModalLoading,
-   setTodalModalLoading,
-   setTodos,
-   selectedTodo,
-   setSelectedTodo
-  }) => {
+  setSelect,
+  todalModalLoading,
+  setTodalModalLoading,
+  setTodos,
+  selectedTodo,
+  setSelectedTodo,
+}) => {
+  useEffect(() => {
+    setTodalModalLoading(true);
 
-    useEffect(() => {
-      setTodalModalLoading(true)
-
-      getUser(selectedTodo.userId)
+    getUser(selectedTodo.userId)
       .then(setTodos)
-      .finally(() => setTodalModalLoading(false))
+      .finally(() => setTodalModalLoading(false));
+  }, [selectedTodo.userId]);
 
-    }, [])
-
-    return (
+  return (
     <div className="modal is-active" data-cy="modal">
       <div className="modal-background" />
 
-    {todalModalLoading ? (
+      {todalModalLoading ? (
         <Loader />
       ) : (
         <div className="modal-card">
@@ -42,11 +40,11 @@ export const TodoModal: React.FC = ({
               className="delete"
               data-cy="modal-close"
               onClick={() => {
-                setSelect(false)
-                setTodalModalLoading(true)
-                setSelectedTodo('')
+                setSelect(false);
+                setTodalModalLoading(true);
+                setSelectedTodo('');
               }}
-              />
+            />
           </header>
 
           <div className="modal-card-body">
@@ -55,10 +53,11 @@ export const TodoModal: React.FC = ({
             </p>
 
             <p className="block" data-cy="modal-user">
-              {selectedTodo.completed
-              ? <strong className="has-text-success">Done</strong>
-              : <strong className="has-text-danger">Planned</strong>
-            }
+              {selectedTodo.completed ? (
+                <strong className="has-text-success">Done</strong>
+              ) : (
+                <strong className="has-text-danger">Planned</strong>
+              )}
 
               {' by '}
 
