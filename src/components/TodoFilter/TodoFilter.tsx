@@ -1,17 +1,34 @@
-export const TodoFilter = () => (
+import { SORT_FIELD } from "../../App";
+
+export const TodoFilter = ({
+  query,
+  setQuery,
+  sortField,
+  setSortField,
+  setSelect,
+  setLoading,
+  setSelectedTodo
+}) => {
+
+return (
   <form className="field has-addons">
     <p className="control">
       <span className="select">
-        <select data-cy="statusSelect">
+        <select
+        value={sortField}
+        onChange={(event) => setSortField(event.target.value)}
+        data-cy="statusSelect">
           <option value="all">All</option>
-          <option value="active">Active</option>
-          <option value="completed">Completed</option>
+          <option value={SORT_FIELD.COMPLEATED_FALSE}>Active</option>
+          <option value={SORT_FIELD.COMPLEATED_TRUE}>Completed</option>
         </select>
       </span>
     </p>
 
     <p className="control is-expanded has-icons-left has-icons-right">
       <input
+        value={query}
+        onChange={(event) => setQuery(event.currentTarget.value)}
         data-cy="searchInput"
         type="text"
         className="input"
@@ -22,9 +39,17 @@ export const TodoFilter = () => (
       </span>
 
       <span className="icon is-right" style={{ pointerEvents: 'all' }}>
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button data-cy="clearSearchButton" type="button" className="delete" />
+        {query !== '' &&
+        <button
+          data-cy="clearSearchButton"
+          type="button"
+          className="delete"
+          onClick={() => {
+            setQuery('')
+            }}/>
+        }
       </span>
     </p>
   </form>
-);
+  )
+};

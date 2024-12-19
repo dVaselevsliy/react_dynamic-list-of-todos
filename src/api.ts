@@ -2,8 +2,7 @@ import { Todo } from './types/Todo';
 import { User } from './types/User';
 
 // eslint-disable-next-line operator-linebreak
-const BASE_URL =
-  'https://mate-academy.github.io/react_dynamic-list-of-todos/api';
+const BASE_URL = 'https://mate-academy.github.io/react_dynamic-list-of-todos/api';
 
 // This function creates a promise
 // that is resolved after a given delay
@@ -13,7 +12,7 @@ function wait(delay: number): Promise<void> {
   });
 }
 
-function get<T>(url: string): Promise<T> {
+export function get<T>(url: string): Promise<T> {
   // eslint-disable-next-line prefer-template
   const fullURL = BASE_URL + url + '.json';
 
@@ -23,6 +22,13 @@ function get<T>(url: string): Promise<T> {
     .then(res => res.json());
 }
 
-export const getTodos = () => get<Todo[]>('/todos');
+export function getTodos() {
+  return get<Todo[]>('/todos')
+}
 
-export const getUser = (userId: number) => get<User>(`/users/${userId}`);
+export function getUser(userId: number) {
+  return get<Todo[]>(`/users/${userId}`)
+   .then(todos => todos.filter(
+    todo => todo.userId === userId
+   ))
+}
